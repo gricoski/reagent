@@ -1,3 +1,6 @@
+
+
+
 First, I created a template to work from using leins.
 The template needed me to state what compiler. I wanted to use
 My choice and the turotial uses shadow-cljs
@@ -20,4 +23,26 @@ Next I worked on adding the css in the style.css file in public folder
 
 Next I go to te core.cljs in src and remove some boilerplate
 
+**
+How I got this in git.
+
+Made repository in Git with no new readme or anything files
+Then copied the files to a new location with out the git folder
+Then typed: 
+git init
+git commit -m "First commit"
+//This gave me an error of nothing added to commit but unchecked files, but I continued on
+git remote add origin 'https://github.com/gricoski/reagent.git'
+git push push -u origin master
+//This failed with "error: src refspec master..."
+//I retrited a few times, but eventually I typed...
+git add .
+git commit -m "Not first Try"
+git push origin master
+//This worked... Problem was that I didn't say "git add ." to add the files...
+
+**
+Tomorrow I will remove code from template and add what tutorial says:
 What I removed:
+
+
