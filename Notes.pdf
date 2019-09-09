@@ -1,0 +1,23 @@
+First, I created a template to work from using leins.
+The template needed me to state what compiler. I wanted to use
+My choice and the turotial uses shadow-cljs
+I also wanted lein template setup for reagent
+Then I wanted it to cd to the folder I created
+
+I used this line in ubuntu terminal
+$ lein new shadow-cljs breaking-bad-quotes +reagent && cd breaking-bad-quotes
+
+I made sure I had shadow-cljs installed
+
+First, I can see what it looks like by running this commad
+$ shadow-cljs watch app
+Then going into browser here: http://localhost:8700
+
+It showed me that I had to install React...
+***$ Npm install react
+
+Next I worked on adding the css in the style.css file in public folder
+
+Next I go to te core.cljs in src and remove some boilerplate
+
+What I removed:
