@@ -1,4 +1,4 @@
-
+;;Working off this tutorial:: https://www.rockyourcode.com/tutorial-clojurescript-app-with-reagent-for-beginners-part-1
 
 
 First, I created a template to work from using leins.
@@ -44,5 +44,61 @@ git push origin master
 **
 Tomorrow I will remove code from template and add what tutorial says:
 What I removed:
+
+First I $npm install react
+Then chcekd to see what it looked like with:
+$ shadow-cljs watch app
+Then going into browser here: http://localhost:8700
+...Had to install $npm install create-react-class
+...Had to install $npm install react-dom
+HINT: use Ctrl-C to get out of bash prorams...
+..That worked
+
+All together react depencies needed to install with Npm:
+npm install react
+npm install create-react-class
+npm install react-dom
+
+No changes were automaticaly happening in broswer when I saved...
+Relized I was in the wrong directory...
+... I had to reinstall React again???
+
+
+Data structures are immutable in clojure, but we need changes. so we use atom
+Atom - a container that holds mutable values
+Use @ to peak into it's state?
+
+What I removed from Template:
+
+(comment
+;; define your app data so that it doesn't get over-written on reload
+;;Old Stuff down below...
+(defonce app-state (atom {:text "Hello world!"}))
+
+(defn hello-world []
+  [:div
+   [:h1 (:text @app-state)]
+   [:h3 "Edit this and watch what change!"]
+   [:h2 "I love you, Vienna!!!"]])
+
+(defn start []
+  (reagent/render-component [hello-world]
+                            (. js/document (getElementById "app"))))
+
+(defn ^:export init []
+  ;; init is called ONCE when the page loads
+  ;; this is called in the index.html and must be exported
+  ;; so it is available even in :advanced release builds
+  (start))
+
+(defn stop []
+  ;; stop is called before any code is reloaded
+  ;; this is controlled by :before-load in the config
+  (js/console.log "stop"))
+)
+
+The code was replaced with hiccup style...
+Wiki here review again tomorrow:  https://github.com/weavejester/hiccup/wiki/Syntax
+
 
 
