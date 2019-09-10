@@ -3,26 +3,23 @@
 (ns breaking-bad-quotes.core
   (:require [reagent.core :as reagent :refer [atom]]))
 
-;; define your app data so that it doesn't get over-written on reload
-
-(defonce app-state (atom {:text "Hello world!"}))
-
-(defn hello-world []
-  [:div
-   [:h1 (:text @app-state)]
-   [:h3 "Edit this and watch it change!"]])
+(defn quote []
+     (let [data (atom "quote app")]
+          (fn []
+               [:div.cards>div.card
+               [:h2.card-header.text-center "I love Vienna"]
+               [:div.card-body.text-center
+               [:p#quote @data]
+               [:p#author @data]]
+               [:div.card-footer.center.text-center
+               [:button#twitter.outline>a#tweet
+               {:href "#"
+               :target "_blank"}
+               [:i.fi-social-twitter " Tweet"]]
+               [:button#new-quote.outline
+               [:i.fi-shuffle " Don't Push"]]]])))
+;;This is hiccup style - see here: https://github.com/weavejester/hiccup/wiki/Syntax
 
 (defn start []
-  (reagent/render-component [hello-world]
-                            (. js/document (getElementById "app"))))
-
-(defn ^:export init []
-  ;; init is called ONCE when the page loads
-  ;; this is called in the index.html and must be exported
-  ;; so it is available even in :advanced release builds
-  (start))
-
-(defn stop []
-  ;; stop is called before any code is reloaded
-  ;; this is controlled by :before-load in the config
-  (js/console.log "stop"))
+     (reagent/render-component [quote]
+                             (. js/document (getElementById "app"))))
