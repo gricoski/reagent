@@ -1,5 +1,5 @@
 ;;Working off this tutorial:: https://www.rockyourcode.com/tutorial-clojurescript-app-with-reagent-for-beginners-part-1
-
+;;Reframe Tutorial
 
 First, I created a template to work from using leins.
 The template needed me to state what compiler. I wanted to use
@@ -100,5 +100,47 @@ What I removed from Template:
 The code was replaced with hiccup style...
 Wiki here review again tomorrow:  https://github.com/weavejester/hiccup/wiki/Syntax
 
+****Afer This work on Reframe****
 
+
+Old quote function:
+(defn quote []
+     (let [data (atom nil)]
+          (fetch-link! data) ;;adding teh fetch-link function above to pull data in to quote function
+          (fn []
+              (let [{:strs [quote auther]} (first @data)
+                   tweet-intent (str "https://twitter.com/intent/tweet?hashtags=breakingbad&text=" quote " ~ " author)]
+               [:div.cards>div.card
+               [:h2.card-header.text-center "I love Vienna"]
+               [:div.card-body.text-center
+               [:p#quote @data]  ;;@If you don't de-ref with @, broswer won't disply "quote app"
+               [:p#author @data]]
+               [:div.card-footer.center.text-center
+               [:button#twitter.outline>a#tweet  ;;Creates outer HTML element with a button with ID twiiter and class outline
+               {:href "#"  ;;Inside this element a nest HTML Link with id Tweet
+               :target "_blank"}
+               [:i.fi-social-twitter " Tweet"]]
+               [:button#new-quote.outline
+                    {:on-click #(fetch-link! data) }
+               [:i.fi-shuffle " Don't Push"]]]]))))
+
+
+Some Notes:
+
+    try to get a sketch of the app as soon as possible: mockup the app with Hiccup templating and hard-coded data
+    
+    start with a knowledge of how your data is structured: I knew I would get a JSON object from the API with the keys "author" and "quote" and their values as strings
+    
+    incremental design: at first I was not sure how to destructure the JSON object, so I just tried to display the complete JSON and improved the design from there
+   
+    an eye on UI: I knew I wanted to use Wing CSS so I made sure to include the correct classes into Hiccup/HTML right from the start instead of re-arranging the stuff later
+   
+    sometimes things are easier than they look: it took me many experiments to get the Twitter web intent right because I tried some arcane stuff instead of just constructing a string out of the url and the (already destructured) dataset - it helps to take a step back and just sleep on it
+
+;;Next part would be setting it up in google Firebase
+https://www.rockyourcode.com/tutorial-clojurescript-app-with-reagent-for-beginners-part-2
+
+Next I'm uploading to google firebase for deployment.
+I first install firebase with npm using this line:
+$npm install --save firebase
 
